@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Les pages de démonstration portent une balise <meta name="robots" content="noindex">
+# (entreprises fictives) : elles restent accessibles mais ne sont pas indexées.
+
+Sitemap: https://kreapro-web.github.io/presentation/sitemap.xml

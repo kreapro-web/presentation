@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-cream text-ink font-body antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-heading font-bold text-midnight-violet;
+  }
+  ::selection {
+    @apply bg-willow-green text-midnight-violet;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex min-h-[3rem] items-center justify-center gap-2 rounded-full bg-willow-green px-6 py-3.5 font-semibold text-midnight-violet transition-all duration-200 ease-out hover:brightness-95 hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-midnight-violet;
+  }
+
+  .btn-secondary {
+    @apply inline-flex min-h-[3rem] items-center justify-center gap-2 rounded-full bg-blackberry-cream px-6 py-3.5 font-semibold text-cream transition-all duration-200 ease-out hover:brightness-110 hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blackberry-cream;
+  }
+
+  .btn-ghost {
+    @apply inline-flex min-h-[3rem] items-center justify-center gap-2 rounded-full border-2 border-midnight-violet/15 px-6 py-3.5 font-semibold text-midnight-violet transition-all duration-200 ease-out hover:border-midnight-violet/30 hover:bg-midnight-violet/5;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full bg-tea-green px-3 py-1 text-xs font-semibold uppercase tracking-wide text-midnight-violet;
+  }
+
+  .section-title {
+    @apply font-heading text-3xl font-bold text-midnight-violet sm:text-4xl;
+  }
+
+  .section-eyebrow {
+    @apply mb-3 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-blackberry-cream;
+  }
+
+  .card {
+    @apply rounded-xl2 bg-white/70 p-6 shadow-soft ring-1 ring-midnight-violet/5 backdrop-blur-sm transition-transform duration-200 hover:-translate-y-1;
+  }
+
+  .nav-link {
+    @apply text-sm font-semibold text-midnight-violet/80 transition-colors hover:text-midnight-violet;
+  }
+
+  .whatsapp-float {
+    @apply fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-blackberry-cream px-5 py-3.5 text-sm font-semibold text-cream shadow-soft transition-all duration-200 hover:brightness-110 hover:scale-[1.03];
+  }
+}
