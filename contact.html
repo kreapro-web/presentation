@@ -113,9 +113,13 @@
 
         <!-- Formulaire -->
         <div class="rounded-xl2 bg-white/70 p-8 shadow-soft ring-1 ring-midnight-violet/5 sm:p-10">
-          <!-- NOTE: formulaire de démonstration. Connecter à Formspree, Netlify Forms
-               ou une API serverless avant la mise en ligne pour recevoir les messages. -->
-          <form data-contact-form class="space-y-5" novalidate>
+          <!-- Envoi géré par Web3Forms (https://web3forms.com) — remplacer la valeur de
+               access_key ci-dessous par la clé reçue par e-mail sur kreaprorun@gmail.com. -->
+          <form data-contact-form class="space-y-5" action="https://api.web3forms.com/submit" method="POST" novalidate>
+            <input type="hidden" name="access_key" value="REMPLACER_PAR_LA_CLE_WEB3FORMS" />
+            <input type="hidden" name="subject" value="Nouvelle demande — site KréaPro" />
+            <input type="hidden" name="from_name" value="Site KréaPro" />
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" style="display:none !important" />
             <div class="grid gap-5 sm:grid-cols-2">
               <div>
                 <label for="name" class="mb-1.5 block text-sm font-semibold text-midnight-violet">Nom complet</label>
@@ -153,12 +157,18 @@
               J'accepte que mes informations soient utilisées pour être recontacté(e) au sujet de ma demande.
             </label>
             <button type="submit" class="btn-primary w-full sm:w-auto">Envoyer ma demande</button>
+
+            <div data-contact-error class="hidden rounded-xl bg-blackberry-cream/10 p-4 text-sm text-blackberry-cream">
+              L'envoi n'a pas fonctionné. Merci de nous écrire directement sur
+              <a href="https://wa.me/262693860802" target="_blank" rel="noopener" class="font-semibold underline">WhatsApp</a>
+              ou à <a href="mailto:kreaprorun@gmail.com" class="font-semibold underline">kreaprorun@gmail.com</a>.
+            </div>
           </form>
 
           <div data-contact-confirmation tabindex="-1" class="hidden rounded-xl2 bg-willow-green/20 p-8 text-center outline-none">
             <svg class="mx-auto h-10 w-10 text-blackberry-cream"><use href="#icon-check-circle" /></svg>
-            <h2 class="mt-4 font-heading text-xl font-bold text-midnight-violet">Merci, votre message est prêt à être envoyé !</h2>
-            <p class="mt-2 text-sm text-ink/70">Cette démonstration n'envoie pas encore réellement le formulaire — pensez à connecter un service d'envoi (Formspree, Netlify Forms...) avant la mise en ligne. En attendant, contactez-nous directement par WhatsApp ou email ci-contre.</p>
+            <h2 class="mt-4 font-heading text-xl font-bold text-midnight-violet">Merci, votre message est bien parti !</h2>
+            <p class="mt-2 text-sm text-ink/70">Nous revenons vers vous sous 24&nbsp;h, par e-mail ou WhatsApp. Pour une réponse immédiate, écrivez-nous directement sur WhatsApp.</p>
           </div>
         </div>
 

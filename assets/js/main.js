@@ -86,23 +86,60 @@ function initActiveNavLink() {
   });
 }
 
-// Formulaire de contact
-// NOTE: aucun backend n'est connecté pour l'instant. Avant la mise en ligne,
-// remplacer ce traitement par un vrai envoi (Formspree, Netlify Forms, API serverless...).
+// Formulaire de contact — envoi via Web3Forms (https://web3forms.com), sans backend.
+// La clé publique est dans le champ caché "access_key" du formulaire (contact.html).
 function initContactForm() {
   const form = document.querySelector("[data-contact-form]");
   const confirmation = document.querySelector("[data-contact-confirmation]");
+  const errorBox = document.querySelector("[data-contact-error]");
   if (!form || !confirmation) return;
 
-  form.addEventListener("submit", (event) => {
+  const endpoint = form.getAttribute("action") || "https://api.web3forms.com/submit";
+
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
-    form.classList.add("hidden");
-    confirmation.classList.remove("hidden");
-    confirmation.focus();
+
+    const button = form.querySelector('button[type="submit"]');
+    const label = button ? button.textContent : "";
+    if (button) {
+      button.disabled = true;
+      button.textContent = "Envoi en cours…";
+    }
+    if (errorBox) errorBox.classList.add("hidden");
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
+      });
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok && data.success) {
+        form.classList.add("hidden");
+        confirmation.classList.remove("hidden");
+        confirmation.focus();
+      } else {
+        throw new Error(data.message || "Échec de l'envoi");
+      }
+    } catch (err) {
+      if (errorBox) {
+        errorBox.classList.remove("hidden");
+      } else {
+        window.alert(
+          "L'envoi a échoué. Merci de nous écrire directement sur WhatsApp ou à kreaprorun@gmail.com."
+        );
+      }
+    } finally {
+      if (button) {
+        button.disabled = false;
+        button.textContent = label;
+      }
+    }
   });
 }
 
